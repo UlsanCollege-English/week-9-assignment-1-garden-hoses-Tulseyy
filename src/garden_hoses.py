@@ -20,9 +20,40 @@ Steps TODO:
 """
 
 def min_cost_connect(lengths):
-    # TODO: implement using a min-heap (heapq)
-    # raise NotImplementedError to show failing tests until implemented
-    raise NotImplementedError
+  """Return minimal total cost to connect all hoses.
+
+  Strategy (greedy): always connect the two shortest hoses first.
+
+  Pseudocode:
+  - If lengths has 0 or 1 element, return 0
+  - Turn lengths into a min-heap
+  - total = 0
+  - While heap has at least two items:
+    a = pop smallest
+    b = pop next smallest
+    cost = a + b
+    total += cost
+    push cost back into heap
+  - return total
+  """
+  import heapq
+
+  # Defensive copy so we don't mutate caller's list
+  if not lengths or len(lengths) <= 1:
+    return 0
+
+  heap = list(lengths)
+  heapq.heapify(heap)
+
+  total = 0
+  while len(heap) > 1:
+    a = heapq.heappop(heap)
+    b = heapq.heappop(heap)
+    cost = a + b
+    total += cost
+    heapq.heappush(heap, cost)
+
+  return total
 
 
 if __name__ == "__main__":

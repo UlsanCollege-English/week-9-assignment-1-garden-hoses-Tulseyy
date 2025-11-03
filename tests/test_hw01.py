@@ -24,7 +24,7 @@ def test_small_known_1():
     assert min_cost_connect([1,2,3,4]) == 19
 
 def test_small_known_2():
-    assert min_cost_connect([5,2,4]) == 18
+    assert min_cost_connect([5,2,4]) == 17
 
 def test_small_known_3():
     assert min_cost_connect([8,4,6,12]) == 58
